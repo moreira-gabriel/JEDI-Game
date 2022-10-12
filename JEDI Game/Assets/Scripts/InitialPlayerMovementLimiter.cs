@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class InitialPlayerMovementLimiter : MonoBehaviour
 {
-
+    private enum ArrowInput{
+        Up,
+        Down,
+        Right,
+        Left
+    }
+    private ArrowInput CurrentValidArrowInput;
     public enum GameState {
         Starting,
         FirstStep,
@@ -13,11 +19,14 @@ public class InitialPlayerMovementLimiter : MonoBehaviour
         EndOfLevel
     };
 
+        private bool HandlingPlayerInput;
+
+    // Simple State Machine to manage the player Movement and animations
     public void ChangeState(GameState nextState){
 
         switch(nextState){
             case GameState.Starting:
-                HandleFirstPlayerInput();
+                PlayFirstAnimation();
                 break;
             case GameState.FirstStep:
                 HandleFirstMovement();
@@ -37,26 +46,69 @@ public class InitialPlayerMovementLimiter : MonoBehaviour
         }
     }
 
-    private void HandleFirstPlayerInput(){
+    private void PlayFirstAnimation(){
+        HandlingPlayerInput = false;
+
+        // PLAY THE FIRST CUTSCENE
         ChangeState(GameState.FirstStep);
+
+        HandlingPlayerInput = true;
+    }
+    private void HandleFirstPlayerInput(){
+        HandlingPlayerInput = true;
+
+        Debug.Log("Starting");
+        HandlingPlayerInput = false;
+        // Play First Animation/Cutscene ()
     }
     private void HandleFirstMovement(){
         ChangeState(GameState.SecondStep);
+                Debug.Log("First Movement");
+        // Play Second Animation
     }
     private void HandleSecondMovement(){
         ChangeState(GameState.ThirdStep);
+                Debug.Log("Second Movement");
+        // Play Third Animation
     }
     private void HandleThirdMovement(){
         ChangeState(GameState.EndOfLevel);
+                Debug.Log("Third Movement");
+        // Play Fourth Animation
     }
     private void HandleLoadNextScene(){
+                Debug.Log("Changing Scenes...");
         //Load the next phase
     }
 
-    void Start() => ChangeState(GameState.Starting);
+    private void HandlePlayerInput(){
+        switch(CurrentValidArrowInput){
+            case ArrowInput.Right:
+                if(Input.GetKeyDown(KeyCode.RightArrow));
+                break;
+            case ArrowInput.Down:
+                if(Input.GetKeyDown(KeyCode.DownArrow));
+                break;
+            case ArrowInput.Left:
+                if(Input.GetKeyDown(KeyCode.LeftArrow));
+                break;
+            case ArrowInput.Up:
+                if(Input.GetKeyDown(KeyCode.UpArrow));
+                break;
+        }
+    }
+
+    void Start() {
+        ChangeState(GameState.Starting);
+        CurrentValidArrowInput = ArrowInput.Right;
+        HandlingPlayerInput = false;
+    } 
     
+
     void Update()
     {
-        
+        if(HandlingPlayerInput){
+            HandlePlayerInput();
+        }
     }
 }
