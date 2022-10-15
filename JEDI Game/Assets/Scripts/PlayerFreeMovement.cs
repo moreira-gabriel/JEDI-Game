@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerFreeMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector2 speed;
+
+    private double verticalCameraLimit = 4.45;
+    private double horizontalCameraLimit = 7.45;
+
+    [SerializeField]   private Rigidbody2D rb;
+
+    Vector2 movement;
     void Start()
     {
         
@@ -13,6 +20,18 @@ public class PlayerFreeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        MovementInput();
+    }
+
+    private void FixedUpdate(){
+        rb.velocity = movement * speed;
+    }
+
+    void MovementInput () {
+        float mx = Input.GetAxisRaw("Horizontal");
+        float my = Input.GetAxisRaw("Vertical");
+
+        movement = new Vector2(mx, my).normalized;
+
     }
 }
