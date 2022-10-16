@@ -10,9 +10,27 @@ public class AIFleeFromPlayer : MonoBehaviour
     private string playerTag = "Player";
     private GameObject player;
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private float maxSpeed = 1.5f;
+
+    public float speedX = 1f;
+    public float speedY = 1f;
+
+    private Vector2 movement;
+  
+    private float timer;
+
+    [SerializeField]
+    private float timeToReverseMovement = 0.5f;
+    private int direction = 1;
+    
+
     // Start is called before the first frame update
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+                movement = new Vector2(speedX, speedY);
+
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag(playerTag)) {
@@ -29,14 +47,38 @@ public class AIFleeFromPlayer : MonoBehaviour
         }
     }
     private void Update() {
-        // Only math here ok?
+        // Only meth here ok?
         if (PlayerDetected) {
             Vector2 direction = (transform.position - player.transform.position);
             float distance = Vector2.Distance(transform.position, player.transform.position);
-            rb.velocity = (3.5f - distance) * direction;
+            direction = direction/distance;
+            rb.velocity = (direction/ distance) / maxSpeed;
+            
+            
+            Debug.Log("Velocity -->" + direction/distance);
+            Debug.Log("direction -->" + direction);
+            Debug.Log("distance -->" + distance);
+
         }
         else {
             rb.velocity = Vector2.zero;
         }
+        if(!PlayerDetected){
+            timer += Time.deltaTime;
+            if(timer >= timeToReverseMovement){
+                timer = 0;
+                direction *= -1;
+            }
+               rb.velocity = movement * direction;
+        }
+
+        
     }
+
+
+    
+    
+   
+
+   
 }
