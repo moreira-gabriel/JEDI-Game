@@ -240,7 +240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279665270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.24, y: 0.27, z: 0}
+  m_LocalPosition: {x: 6.13, y: 0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a148060f62c3a4483608f28d071afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedX: 1
-  speedY: 1
-  timeToReverseMovement: 0.5
+  speedX: 0.7
+  speedY: 0.7
+  timeToReverseMovement: 0.1
 --- !u!1 &292266449
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 292266451}
   - component: {fileID: 292266450}
   - component: {fileID: 292266454}
+  - component: {fileID: 292266455}
   m_Layer: 0
   m_Name: SuicidalBall1
   m_TagString: Untagged
@@ -379,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292266449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.81, y: 2.74, z: 0}
+  m_LocalPosition: {x: 2.17, y: 3.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -401,6 +402,19 @@ MonoBehaviour:
   speedX: 0.7
   speedY: 0
   timeToReverseMovement: 0.1
+--- !u!114 &292266455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292266449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d72b8309aac3643a07520bae62ba8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneToBeLoaded: 1
 --- !u!1 &362767338
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362767338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.17, y: -2.8, z: 0}
+  m_LocalPosition: {x: 7, y: -3.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
