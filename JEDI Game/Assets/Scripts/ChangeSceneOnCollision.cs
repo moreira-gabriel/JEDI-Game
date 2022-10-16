@@ -19,8 +19,7 @@ public class ChangeSceneOnCollision : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
-            SceneManager.LoadScene("InitialScene");
+        if (collision.gameObject.CompareTag("Player")) SceneManager.LoadScene("InitialScene");
         
     }
 

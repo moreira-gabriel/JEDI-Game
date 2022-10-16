@@ -29,6 +29,7 @@ public class AIFleeFromPlayer : MonoBehaviour
         }
     }
     private void Update() {
+        // Only math here ok?
         if (PlayerDetected) {
             Vector2 direction = (transform.position - player.transform.position);
             float distance = Vector2.Distance(transform.position, player.transform.position);
