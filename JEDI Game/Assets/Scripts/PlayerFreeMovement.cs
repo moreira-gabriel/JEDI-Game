@@ -1,30 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFreeMovement : MonoBehaviour
 {
-    public Vector2 speed;
-
-    [SerializeField]   private Rigidbody2D rb;
-
+    [SerializeField] float speed;
+    Rigidbody2D rig;
     Vector2 movement;
-   
-    // Update is called once per frame
-    void Update()
+    
+    void Start()
     {
-        MovementInput();
+        rig = GetComponent<Rigidbody2D>(); 
+    }
+   
+    void Update() => MovementInput();
+
+    void FixedUpdate()
+    {
+        rig.velocity = movement * speed * Time.deltaTime;
     }
 
-    private void FixedUpdate(){
-        rb.velocity = movement * speed;
-    }
+    void MovementInput () 
+    {
+        float mx = Input.GetAxis("Horizontal");
+        float my = Input.GetAxis("Vertical");
 
-    void MovementInput () {
-        float mx = Input.GetAxisRaw("Horizontal");
-        float my = Input.GetAxisRaw("Vertical");
-
-        movement = new Vector2(mx, my).normalized;
-
+        movement = new Vector2(mx, my);
     }
 }

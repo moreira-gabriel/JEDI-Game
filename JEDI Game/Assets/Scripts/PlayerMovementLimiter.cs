@@ -26,7 +26,7 @@ public class PlayerMovementLimiter : MonoBehaviour
     float timer;
 
     [SerializeField] private PlayableDirector timeline;
-    [SerializeField] private PlayableAsset asset;
+    [SerializeField] private List<PlayableAsset> playableAssets = new List<PlayableAsset>();
 
     void Start() 
     {
@@ -44,18 +44,15 @@ public class PlayerMovementLimiter : MonoBehaviour
         timer += Time.deltaTime;
 
         if(handlingPlayerInput) HandlePlayerInput();
-
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            timeline.Play(asset);
-        }
     }
 
     void PlayFirstAnimation()
     {        
-        handlingPlayerInput = true;
+        handlingPlayerInput = false;
         
-        Debug.Log("Pode clicar");
+        timeline.Play(playableAssets[0]);
+
+        playableAssets.RemoveAt(0);
     }
 
     private void PlayNextAnimation()
