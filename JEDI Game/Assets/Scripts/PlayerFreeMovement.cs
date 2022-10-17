@@ -8,6 +8,8 @@ public class PlayerFreeMovement : MonoBehaviour
     
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(gameObject.layer,6);
+
         rig = GetComponent<Rigidbody2D>(); 
     }
    

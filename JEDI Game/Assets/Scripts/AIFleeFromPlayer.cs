@@ -25,30 +25,33 @@ public class AIFleeFromPlayer : MonoBehaviour
     private float timeToReverseMovement = 0.5f;
     private int direction = 1;
     
-
-    // Start is called before the first frame update
-    private void Start() {
+    private void Start() 
+    {
         rb = GetComponent<Rigidbody2D>();
-                movement = new Vector2(speedX, speedY);
-
+        movement = new Vector2(speedX, speedY);
     }
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag(playerTag)) {
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if (collision.CompareTag(playerTag)) 
+        {
             PlayerDetected = true;
             player = collision.gameObject;
         }
     }
 
-    // Update is called once per frame
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.CompareTag(playerTag)) {
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(playerTag)) 
+        {
             PlayerDetected = false;
             player = null;
         }
     }
-    private void Update() {
-        // Only meth here ok?
-        if (PlayerDetected) {
+
+    private void Update() 
+    {
+        if (PlayerDetected) 
+        {
             Vector2 direction = (transform.position - player.transform.position);
             float distance = Vector2.Distance(transform.position, player.transform.position);
             direction = direction/distance;
@@ -60,25 +63,23 @@ public class AIFleeFromPlayer : MonoBehaviour
             Debug.Log("distance -->" + distance);
 
         }
-        else {
+        else 
+        {
             rb.velocity = Vector2.zero;
         }
-        if(!PlayerDetected){
+        if(!PlayerDetected)
+        {
             timer += Time.deltaTime;
-            if(timer >= timeToReverseMovement){
+            
+            if(timer >= timeToReverseMovement)
+            {
                 timer = 0;
                 direction *= -1;
             }
-               rb.velocity = movement * direction;
+            
+            rb.velocity = movement * direction;
         }
 
         
-    }
-
-
-    
-    
-   
-
-   
+    }  
 }
