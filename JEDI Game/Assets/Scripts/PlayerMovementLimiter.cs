@@ -19,16 +19,20 @@ public class PlayerMovementLimiter : MonoBehaviour
         PlayingScene,
     };
     
+    [Header("Game Objects")]
     [SerializeField] GameObject rightArrowObject;
     [SerializeField] GameObject leftArrowObject;
     [SerializeField] GameObject upArrowObject;
     [SerializeField] GameObject downArrowObject;
+    [SerializeField] PlayableDirector playableDirector;
 
+    [Header("Cutscene Settings")]
     [SerializeField] List<ArrowInput> validArrowInputOrder = new List<ArrowInput>();
     [SerializeField] GameState gameState = GameState.Starting;
-    [SerializeField] PlayableDirector playableDirector;
-    [SerializeField] TimelineAsset timeline;
+
     bool acceptInput = false;
+
+    [SerializeField]
 
     void Awake() 
     {
@@ -82,11 +86,11 @@ public class PlayerMovementLimiter : MonoBehaviour
         
         acceptInput = false;
 
-        if(upArrowObject.activeSelf) upArrowObject.SetActive(false);
-        if(downArrowObject.activeSelf) downArrowObject.SetActive(false);
-        if(rightArrowObject.activeSelf) rightArrowObject.SetActive(false);
-        if(leftArrowObject.activeSelf) leftArrowObject.SetActive(false);
-        
+        if(upArrowObject.activeSelf) StartCoroutine(upArrowObject.GetComponent<AutoDestroy>().PlayAnimationAndDestroy());
+        if(downArrowObject.activeSelf) StartCoroutine(downArrowObject.GetComponent<AutoDestroy>().PlayAnimationAndDestroy());
+        if(rightArrowObject.activeSelf) StartCoroutine(rightArrowObject.GetComponent<AutoDestroy>().PlayAnimationAndDestroy());
+        if(leftArrowObject.activeSelf) StartCoroutine(leftArrowObject.GetComponent<AutoDestroy>().PlayAnimationAndDestroy());
+
         playableDirector.playableGraph.GetRootPlayable(0).Play();
 
         validArrowInputOrder.RemoveAt(0);

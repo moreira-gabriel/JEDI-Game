@@ -13,13 +13,13 @@ public class ChangeSceneOnCollision : MonoBehaviour
         ThirdBallScene
     }
 
-    [Range(1,3)]
-    public int SceneToBeLoaded;
+    [Range(0,3)]
+    public int sceneToBeLoaded;
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) SceneManager.LoadScene("InitialScene");
+        if (collision.gameObject.CompareTag("Player")) SceneManager.LoadScene(sceneToBeLoaded);
         
     }
 
