@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1107 &-4008505217656706879
+--- !u!1107 &-2608076159781013959
 AnimatorStateMachine:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -10,8 +10,8 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -1324851255745911748}
-    m_Position: {x: 300, y: 30, z: 0}
+    m_State: {fileID: -1362006121970939331}
+    m_Position: {x: 280, y: 10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -21,15 +21,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -1324851255745911748}
---- !u!1102 &-1324851255745911748
+  m_DefaultState: {fileID: -1362006121970939331}
+--- !u!1102 &-1362006121970939331
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SuicideBall
+  m_Name: FadeIN
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -42,7 +42,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 743957d8d70fb4f4d871d0bdbf44520e, type: 2}
+  m_Motion: {fileID: 7400000, guid: f02e4059a9cfb5940810fa159e7704dc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -54,13 +54,13 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SuicidalBall1
+  m_Name: Image 2
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
-    m_StateMachine: {fileID: -4008505217656706879}
+    m_StateMachine: {fileID: -2608076159781013959}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []

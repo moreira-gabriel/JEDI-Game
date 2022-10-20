@@ -58,9 +58,9 @@ public class AIFleeFromPlayer : MonoBehaviour
             rb.velocity = (direction/ distance) / maxSpeed;
             
             
-            Debug.Log("Velocity -->" + direction/distance);
-            Debug.Log("direction -->" + direction);
-            Debug.Log("distance -->" + distance);
+            // Debug.Log("Velocity -->" + direction/distance);
+            // Debug.Log("direction -->" + direction);
+            // Debug.Log("distance -->" + distance);
 
         }
         else 

@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-
+using UnityEngine.Timeline;
+using UnityEngine.SceneManagement;
 public class PlayerMovementLimiter : MonoBehaviour
 {
     enum ArrowInput {
@@ -11,83 +11,151 @@ public class PlayerMovementLimiter : MonoBehaviour
         Right,
         Left
     }
+
     enum GameState 
     {
         Starting,
         WaitingInput,
-        EndOfMovement,
+        PlayingScene,
     };
     
-    [SerializeField] ArrowInput currentValidArrowInput;
-    [SerializeField] GameState gameState;
-    bool handlingPlayerInput;
-    [SerializeField] List<ArrowInput> arrowRequiredToNextState = new List<ArrowInput>();
-    [SerializeField] List<float> timeToNextState = new List<float>();
-    float timer;
+    [SerializeField] GameObject rightArrowObject;
+    [SerializeField] GameObject leftArrowObject;
+    [SerializeField] GameObject upArrowObject;
+    [SerializeField] GameObject downArrowObject;
 
-    [SerializeField] private PlayableDirector timeline;
-    [SerializeField] private List<PlayableAsset> playableAssets = new List<PlayableAsset>();
+    [SerializeField] List<ArrowInput> validArrowInputOrder = new List<ArrowInput>();
+    [SerializeField] GameState gameState = GameState.Starting;
+    [SerializeField] PlayableDirector playableDirector;
+    [SerializeField] TimelineAsset timeline;
+    bool acceptInput = false;
 
-    void Start() 
+    void Awake() 
     {
-        currentValidArrowInput = arrowRequiredToNextState[0];
-        
-        gameState = GameState.Starting;
-        
-        handlingPlayerInput = false;
-        
-        Invoke("PlayFirstAnimation", 5f);       
-    }
-    
-    void Update()
-    {
-        timer += Time.deltaTime;
-
-        if(handlingPlayerInput) HandlePlayerInput();
+        upArrowObject.SetActive(false);
+        downArrowObject.SetActive(false);
+        rightArrowObject.SetActive(false);
+        leftArrowObject.SetActive(false);
     }
 
-    void PlayFirstAnimation()
-    {        
-        handlingPlayerInput = false;
-        
-        timeline.Play(playableAssets[0]);
-
-        playableAssets.RemoveAt(0);
-    }
-
-    private void PlayNextAnimation()
+    public void PauseTimeline()
     {
-        handlingPlayerInput = false;
-        
-        Debug.Log("Nova animação");
-    }
+        gameState = GameState.WaitingInput;
 
-    private void HandlePlayerInput()
-    {
-        switch(currentValidArrowInput){
-            case ArrowInput.Right:
-                if(Input.GetKeyDown(KeyCode.RightArrow)){
-                    PlayNextAnimation();
-                }
-                break;
+        playableDirector.playableGraph.GetRootPlayable(0).Pause();
 
-            case ArrowInput.Down:
-                if(Input.GetKeyDown(KeyCode.DownArrow)){
-                    PlayNextAnimation();
-                }
-                break;
-
-            case ArrowInput.Left:
-                if(Input.GetKeyDown(KeyCode.LeftArrow)){
-                    PlayNextAnimation();
-                }
-                break;
-
+        switch (validArrowInputOrder[0])
+        {
+            //Up
             case ArrowInput.Up:
-                if(Input.GetKeyDown(KeyCode.UpArrow)){
-                    PlayNextAnimation();
-                }
+                upArrowObject.SetActive(true);
+                break;
+            
+            //Down
+            case ArrowInput.Down:
+                downArrowObject.SetActive(true);
+                break;
+
+            //Right
+            case ArrowInput.Right:
+                rightArrowObject.SetActive(true);
+                break;
+            
+            //Left
+            case ArrowInput.Left:
+                leftArrowObject.SetActive(true);
+                break;
+
+            default:
+                WrongInput();                    
                 break;
         }
+
+        acceptInput = true;
+        
+        Debug.Log("Pause");
     }
+
+    void PlayTimeline()
+    {
+        gameState = GameState.PlayingScene;
+        
+        acceptInput = false;
+
+        if(upArrowObject.activeSelf) upArrowObject.SetActive(false);
+        if(downArrowObject.activeSelf) downArrowObject.SetActive(false);
+        if(rightArrowObject.activeSelf) rightArrowObject.SetActive(false);
+        if(leftArrowObject.activeSelf) leftArrowObject.SetActive(false);
+        
+        playableDirector.playableGraph.GetRootPlayable(0).Play();
+
+        validArrowInputOrder.RemoveAt(0);
+
+        Debug.Log("Play");
+    }
+
+    void WrongInput()
+    {
+        Debug.Log("wrong");
+    }
+    void VerifyInput()
+    {
+        if(gameState == GameState.WaitingInput)
+        {
+            switch (validArrowInputOrder[0])
+            {
+                //Up
+                case ArrowInput.Up:
+                    if(Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        PlayTimeline();
+                    }
+                    break;
+                
+                //Down
+                case ArrowInput.Down:
+                    if(Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        PlayTimeline();
+                    }
+                    break;
+
+                //Right
+                case ArrowInput.Right:
+                    if(Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        PlayTimeline();
+                    }
+                    break;
+                
+                //Left
+                case ArrowInput.Left:
+                    if(Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        PlayTimeline();
+                    }
+                    break;
+
+                default:
+                    WrongInput();                    
+                    break;
+            }
+        }
+    }
+
+    void Update() 
+    {
+        if(acceptInput)
+        {
+            VerifyInput();
+        }
+    }
+    
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+
 }
