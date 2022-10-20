@@ -263,7 +263,7 @@ MonoBehaviour:
   upArrowObject: {fileID: 1416812906}
   downArrowObject: {fileID: 1738058613}
   playableDirector: {fileID: 1888158507}
-  validArrowInputOrder: 00000000020000000300000001000000
+  validArrowInputOrder: 000000000200000003000000010000000000000000000000
   gameState: 0
 --- !u!4 &296789304
 Transform:
@@ -1081,15 +1081,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1177983780805316581, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: m_Color.b
-      value: 0.7294118
+      value: 0.16237983
       objectReference: {fileID: 0}
     - target: {fileID: 1177983780805316581, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: m_Color.g
-      value: 0.70980394
+      value: 0.16237983
       objectReference: {fileID: 0}
     - target: {fileID: 1177983780805316581, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: m_Color.r
-      value: 0.05882353
+      value: 0.8396226
       objectReference: {fileID: 0}
     - target: {fileID: 1177983780805316582, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: m_RootOrder
