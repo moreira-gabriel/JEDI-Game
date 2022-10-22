@@ -184,6 +184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8685b60b3c24b104394aab37589f0a2f, type: 3}
+--- !u!1 &103335891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1177983780805316580, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
+  m_PrefabInstance: {fileID: 1177983780976004600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &255588112 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4681178479776138501, guid: 2e463122d06f2a14ba85748b97d810b6, type: 3}
@@ -1604,15 +1609,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3073972157485304672, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: maxSpeed
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304681, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_Name
       value: SuicidalBall1
       objectReference: {fileID: 0}
+    - target: {fileID: 3073972157485304681, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304682, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_Radius
-      value: 13
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_RootOrder
@@ -1620,11 +1629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.24
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1658,6 +1667,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3073972157485304687, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 103335891}
     - target: {fileID: 3073972157485304687, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: sceneToBeLoaded
       value: 3
@@ -1832,7 +1845,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3073972157485304672, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: maxSpeed
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304681, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_Name
@@ -1840,7 +1853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304682, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_Radius
-      value: 13
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_RootOrder
@@ -1848,11 +1861,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.38
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304685, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1887,6 +1900,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3073972157485304687, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 103335891}
+    - target: {fileID: 3073972157485304687, guid: c00ac18c8e342e24695060a552a5a94e, type: 3}
       propertyPath: sceneToBeLoaded
       value: 3
       objectReference: {fileID: 0}
@@ -1901,7 +1918,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1177983780805316568, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: speed
-      value: 275
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1177983780805316580, guid: c285b3a53a064a24abc46e9842e899da, type: 3}
       propertyPath: m_Name
